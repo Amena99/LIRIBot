@@ -1,2 +1,19 @@
-# liri-node-app
-This app uses axios to make calls to various APIs to provide song previews and concert information. 
+# LIRI-node-app
+
+### Overview
+This app makes calls to various APIs to provide song previews, concert information, and data about your favorite movies. The LIRI App stands for _Language_ Interpretation and Recognition Interface (a spin-off of Apple's infamous SIRI, which is the _Speech_ Interpretation and Recognition Interface). Much like SIRI, LIRI takes user commands to display information to the user. 
+
+### How to Use LIRI:
+LIRI is fairly simple to use. It is run through the terminal by issuing Node commands. The user needs to issue a command in the pattern, "node <filename.ext> <command-of-your-choice> <artist/movie/song-name>". Where the <command-of-your-choice> is one of the four commands below: 
+Command      | What it does:
+-------------|--------------
+<concert-this>| finds concerts in the area for the artist you specify
+<movie-this> | displays movie data including plot, actors, and release data for the movie you specify
+<spotify-this-song> | displays song data including artist, album, and provides a song preview for the song specified
+<do-what-it-says> | reads commands from an external text file and uses the input to run one of the three commands above. 
+
+### Try it Out! 
+Try any command, such as: "node liri.js spotify-this-song firework" 
+
+### NPM packages
+LIRI uses a number of different npm packages. Remember to run "NPM install" in your terminal so you can have a fully functional LIRI experience. 
