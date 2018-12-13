@@ -5,9 +5,10 @@ This app makes calls to various APIs to provide song previews, concert informati
 
 ### How to Use LIRI:
 LIRI is fairly simple to use. It is run through the terminal by issuing Node commands. The user needs to issue a command in the pattern, "node <filename.ext> <command-of-your-choice> <artist/movie/song-name>". Where the <command-of-your-choice> is one of the four commands below: 
+
 Command      | What it does:
--------------|--------------
-<concert-this>| finds concerts in the area for the artist you specify
+------------- | --------------
+<concert-this> | finds concerts in the area for the artist you specify
 <movie-this> | displays movie data including plot, actors, and release data for the movie you specify
 <spotify-this-song> | displays song data including artist, album, and provides a song preview for the song specified
 <do-what-it-says> | reads commands from an external text file and uses the input to run one of the three commands above. 
