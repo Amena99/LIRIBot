@@ -8,9 +8,9 @@ LIRI is fairly simple to use. It is run through the terminal by issuing Node com
 
 Command      | What it does:
 ------------- | --------------
-concert-this | Finds concerts in the area for the specified artist.
-movie-this | Displays movie data including plot, actors, and release data for the specified movie.
-spotify-this-song | Displays song data including artist, album, and provides a song preview for the speficied song.
+concert-this | Finds concerts in the area for the specified artist using the Bands In Town API.
+movie-this | Displays movie data including plot, actors, and release date for the specified movie using the Online Movie Database API.
+spotify-this-song | Displays song data including artist, album, and provides a song preview for the speficied song using the Spotify API.
 do-what-it-says | Reads commands from an external text file and uses the input to run one of the three commands above. 
 
 ### Try it Out! 

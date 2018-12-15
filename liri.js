@@ -14,10 +14,13 @@ var spotify = new Spotify(
 var omdb = (keys.omdb);
 
 //Store arguments from command line to use in the runCommands() function
+// console.log("process.argv array at top = "+ process.argv);
 var commFirst = (process.argv[2].toString());
 // console.log("command1= "+commFirst);
-var commSecond = (process.argv.splice(3).join(" "));
-// console.log("command2= "+commSecond);
+var commSecond = (process.argv.slice(3).join(" "));
+// console.log("command2= " + commSecond);
+// console.log(typeof(commSecond));
+
 
 //Display user's command
 console.log("\nYour command was " + commFirst +".\n***************************\n");
@@ -31,40 +34,65 @@ switch(command1){
         let artist = command2;
         axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id="+bit_key.key).then(
             function(response){
+                // console.log(response.data);
                 let c_venue=response.data[0].venue.name;
                 let c_city = response.data[0].venue.city;
                 let c_state = response.data[0].venue.region;
                 let c_date = response.data[0].datetime;
                 let date_format = moment(c_date).format("MM/DD/YYYY");
-                console.log("The artist " + artist + " will be playing at "+c_venue + " in " + c_city + " " + c_state + " on "+ date_format+ ".");
-                console.log("\n================\n");
+                console.log("The artist/band " + artist + " will be playing at "+c_venue + " in " + c_city + " " + c_state + " on "+ date_format+ ".");
+                console.log("\n***************************\n");
             });
         break;
     
     //If command is "spotify-this-song" make a call to the Spotify API
     case "spotify-this-song":
-        let song = command2;
-    
-        spotify
+        // console.log("process.argv ="+ process.argv);
+        // console.log("process.argv.length= "+ process.argv.length);
+        if(4>process.argv.length){
+            // console.log("entered if");
+            var song = "the sign ace of base";
+            songSearch(song);
+        }else {
+            // console.log("entered else");
+            var song = command2;
+            songSearch(song);
+        }
+        function songSearch(song) {
+            spotify
             .search({type:"track", query: song, limit: 1})
             .then(function(response) {
+                // console.log(response.tracks);
                 let artist_name= response.tracks.items[0].album.artists[0].name;
                 let song_preview = response.tracks.items[0].album.external_urls.spotify;
                 let album = response.tracks.items[0].album.name;
                 console.log("The song, \""+song+"\", is by "+ artist_name + ". \nYou can get a preview at " + song_preview + " . \nIt is from the album, \"" + album +"\".");
-                console.log("\n================\n");
+                console.log("\n***************************\n");
             })
             .catch(function(err){
                 console.log(err);
             });
+        }
         break;
     
     ////If command is "movie-this" make a call to the Open Movie Database API
     case "movie-this":
-        var movieTitle = command2;
-        // console.log(movieTitle);
-        getMovie(movieTitle);
-        function getMovie(movieTitle){
+        // console.log("process.argv ="+ process.argv);
+        // console.log("process.argv.length= "+ process.argv.length);
+        if(4>process.argv.length){
+            // console.log("entered if");
+            var movieTitle = "Mr Nobody";
+            movieSearch(movieTitle);
+        }else {
+            // console.log("entered else");
+            var movieTitle = command2;
+            movieSearch(movieTitle);
+        }
+    
+       
+        // console.log("before running function movieTitle: "+movieTitle);
+        
+        function movieSearch(movieTitle){
         axios.get("http://www.omdbapi.com/?t="+ movieTitle +"&apikey="+omdb.key).then(
             function(response){
                 // console.log(response.data);
@@ -78,7 +106,7 @@ switch(command1){
                 let m_actors = response.data.Actors;
 
                 console.log("The movie, \""+m_title+"\", was released in "+m_year+".\nIts IMDB Rating is "+m_imdb_rating+".\nIts Rotten Tomatoes Rating is "+m_rt_rating+".\nIt was produced in "+ m_country+" in "+ m_language+".\nBrief Plot: "+m_plot+"\nActors in the movie: "+m_actors);
-                console.log("\n================\n");
+                console.log("\n***************************\n");
             });
         }
         break;
